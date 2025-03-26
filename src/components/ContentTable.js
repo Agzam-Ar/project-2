@@ -65,7 +65,7 @@ export default function ContentTable({onSelect, url, rootUrl}) {
     const [contentTablePromise, setContentTablePromise] = useState(null);
     useEffect(() => {
        const loadContentTablePromise = async () => {
-            const result = await fetch(url);
+            const result = await fetch(process.env.URL + url);
             const data = await result.json();
             return data;
        };
