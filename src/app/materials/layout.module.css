@@ -5,10 +5,11 @@
     flex-grow: 1;
     box-sizing: content-box;
     align-items: flex-start;
+    justify-content: center;
 }
 
 .content-box {
-    width: var(--read-width);
+/*    width: var(--read-width);*/
     max-width: var(--read-width);
     min-width: var(--read-width);
     flex-grow: 1;
