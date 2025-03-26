@@ -1,0 +1,122 @@
+
+/* 
+ * Button 
+ */
+
+.container {
+    position: relative;
+    font-family: var(--font-title);
+    user-select: none;
+}
+
+.box {
+    padding: 1em;
+    height: 1em;
+    line-height: 1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    vertical-align: middle;
+    text-align: center;
+
+    background: var(--background);
+    transition: background .15s ease;
+
+    border-radius: var(--border-radius);
+}
+
+.box:hover {
+    background: var(--background-light);
+}
+
+.filter.active {
+    background: var(--dropdown-background);
+}
+
+.filter:hover {
+    background: var(--background-light);
+}
+
+.icon {
+    border: 1px var(--accent-color) solid;
+    color: var(--accent-color);
+    background: var(--accent-color-darker);
+    aspect-ratio: 1 / 1;
+    height: 1em;
+    padding: .5em;
+    margin: -.5em;
+    margin-right: 1em;
+    border-radius: .375rem;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-icon {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 1em;
+}
+
+.dropdown-icon > svg {
+    height: 1em;
+    width: 1em;
+}
+
+/* 
+ * Dropdown
+ */
+
+.dropdown-body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: .25em;
+    background: #ffff0033;
+    z-index: 99;
+    pointer-events: none;
+    opacity: 0;
+    border-radius: var(--border-radius);
+    transform: translate(0, -10px);
+    transition: .15s ease;
+    background: var(--dropdown-background);
+    box-shadow: 0 0 0 1px var(--dropdown-border-color), .25em .25em 1em #00000033;
+    overflow: hidden;
+}
+
+.dropdown-body.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(0, 0);
+}
+
+.item-box {
+    background: var(--background);
+    padding: 1em;
+    height: 1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    vertical-align: middle;
+    text-align: center;
+    transition: background .15s ease;
+    background: var(--dropdown-background);
+    border-top: 1px var(--dropdown-border-color) solid;
+}
+
+.item-box:hover {
+    background: var(--dropdown-background-hover);
+}
+
+.checkmark {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 1em;
+    color: #48A859;
+}
