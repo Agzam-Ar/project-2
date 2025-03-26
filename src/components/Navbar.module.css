@@ -28,6 +28,7 @@
     padding: 0 .5em 0 .75em;
     border-radius: .3em;
     height: 2.25em;
+    margin: .5em;
 }
 
 .item {
@@ -65,9 +66,12 @@
 }
 
 .head {
+    display: flex;
+    align-items: center;
     user-select: none;
     font-weight: bold;
     text-decoration: none;
+    padding: .15em .75em;
 }
 
 .item > div > span {
