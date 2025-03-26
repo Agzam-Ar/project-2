@@ -37,7 +37,9 @@ export default function CodeBlock({lang, code}) {
                 if(Array.isArray(value)) value = toElements(value);
                 type = token.type;
             }
-            if(typeof value != 'string') console.log('value is not string', value, typeof value);
+            // if(typeof value != 'string') {
+            //     console.warn('value is not string', value, typeof value);
+            // }
             elements.push(<span 
                 key={key++} 
                 style={{

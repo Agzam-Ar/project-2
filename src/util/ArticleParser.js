@@ -120,13 +120,13 @@ const ArticleParser = {
                         };
                         try {
                             const parseRegexp = (str, def=str) => {
-                                if(str.startsWith("/")) {
-                                    let match = str.match(new RegExp('^/(.*?)/([gimy]*)$'));
-                                    if(match == null) return def;
-                                    if(match[1] == undefined) return def;
-                                    if(match[2] == undefined) return def;
-                                    return new RegExp(match[1], match[2]);
-                                }
+                                // if(str.startsWith("/")) {
+                                //     let match = str.match(new RegExp('^/(.*?)/([gimy]*)$'));
+                                //     if(match == null) return def;
+                                //     if(match[1] == undefined) return def;
+                                //     if(match[2] == undefined) return def;
+                                //     return new RegExp(match[1], match[2]);
+                                // }
                                 return def;
                             }
                             const configJson = JSON.parse(`{${node.value}}`);

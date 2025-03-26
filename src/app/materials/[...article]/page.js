@@ -1,13 +1,8 @@
-'use client'
-
 import styles from "./page.module.css";
-import React, { Suspense, useState, useEffect } from 'react';
+// import React, { Suspense, useState, useEffect } from 'react';
 
 import Article from "@/components/Article";
 import ContentTable from "@/components/ContentTable";
-import ArticleParser from "@/util/ArticleParser";
-
-import { usePathname, useRouter, asPath } from 'next/navigation'
 
 function fetchArticle(url, pathname) {
     return new Promise((resolve) => {
@@ -21,25 +16,39 @@ function fetchArticle(url, pathname) {
     });
 }
 
-export default function Materials({ params }) {
-    const [articlePromise, setArticlePromise] = useState(null);
-    const [content, setContent] = useState(null);
-    const fetchContent = async () => {
-        const { article } = await params;
-        const url = article.join("/");
-        const response = await fetch(`/articles/${url}`);
-        const text = await response.text();
-        const content = ArticleParser.parse(text, url);
-        setContent(c => content);
-    };
-    useEffect(() => {
-        fetchContent();
-    }, [ params ]);
+export default async function Materials({ params }) {
+    const { article } = await params;
+    const url = article.join("/");
+    const response = await fetch(process.env.URL + `/articles/${url}`);
+    const text = await response.text();
     return (
         <>
             <div className={styles["article-box"]}>
-                {content}
+                <Article markdown={text} url={url}/>
             </div>
         </>
     );
+}
+
+
+export async function generateStaticParams() {
+    // const treeResponse = await fetch(process.env.URL + '/articles/tree.json');
+    // const tree = await treeResponse.json();
+    
+    // let articles = [];
+    // const parsePage = (tree, url=[]) => {
+    //     // console.log(tree);
+    //     if(tree.child == undefined) {
+    //         articles.push({article: [...url, tree.url]});
+    //         return;
+    //     }
+    //     for (let child of tree.child) {
+    //         parsePage(child, [...url, child.url]);
+    //     }
+    // };
+    // for (let child of tree) {
+    //     parsePage(child);
+    // }
+    // console.log(articles);
+    return [{article: ['readme.md']}];//articles;
 }
