@@ -47,6 +47,11 @@
     margin-left: -.5em;
 }
 
+.md-delete {
+    text-decoration: line-through;
+    color: var(--unaccent-color);
+}
+
 h1.md-heading {
 }
 

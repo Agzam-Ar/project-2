@@ -17,6 +17,7 @@
     --accent-color: #0072f5;
     --accent-background: #2d2d2d;
     --accent-color-darker: #0E253F;
+    --unaccent-color: #888888;
 
     --border-color: #2d2d2d;
 
@@ -36,6 +37,22 @@
     --dropdown-border-color: #1a1a1a;
 
     --dropdown-background-hover: #1a1a1a;
+
+    /* Code colors */
+    --code-label-color: var(--unaccent-color);
+    --code-default: inherit;
+    --code-background: #1a1a1a;
+    --code-keyword: #f75f8f;
+    --code-function: #bf7af0;
+    --code-string: #62c073;
+    --code-triple-quoted-string: var(--code-string);
+    --code-punctuation: #ccc;
+    --code-class-name: #52a8ff;
+    --code-comment: #a1a1a1;
+    --code-var: #f9ae56;
+    --code-parameter: var(--code-var);
+    --code-number: var(--code-var);
+    --code-operator: #f96d55;
 }
 
 

@@ -14,6 +14,8 @@ import Prefs from '@/util/Prefs';
 import Link from 'next/link';
 import styles from "./ArticleParser.module.css";
 
+import CodeBlock from "@/components/CodeBlock";
+
 const processor = unified()
   .use(remarkParse)
   .use(remarkDirective)
@@ -60,7 +62,12 @@ const ArticleParser = {
 					continue;
 				}
 				if(node.type == 'code') {
-					// TODO
+					elements.push(
+						<CodeBlock
+							key={elements.length}
+                			code={node.value}
+                			lang={node.lang}
+            			/>);
 					continue;
 				}
 

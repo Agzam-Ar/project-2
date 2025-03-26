@@ -1,0 +1,57 @@
+
+
+.box {
+	margin-left: 1em;
+	margin-right: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+	position: relative;
+	font-family: var(--font-code);
+	font-size: 14px;
+	color: var(--foreground);
+	background: var(--code-background);
+	border: 1px var(--border-color) solid;
+	border-radius: var(--border-radius);
+
+	padding: 1em;
+	white-space: break-spaces;
+    line-height: 1.2;
+	tab-size: 4;
+}
+
+.info-box {
+	display: flex;
+    align-items: center;
+	position: absolute;
+	right: .4em;
+	top: .4em;
+	background: var(--code-background);
+	color: var(--code-label-color);
+}
+
+.lang {
+	pointer-events: none;
+	user-select: none;
+	margin-right: .5em;
+}
+
+.copy-box {
+	width: 1em;
+	height: 1em;
+	padding: .4em;
+	border-radius: var(--border-radius);
+	transition: .15s ease;
+}
+
+.copy-box:hover {
+	background: var(--accent-background);
+}
+
+
+.code-keyword {
+	font-weight: bold;
+}
+
+.code-comment {
+	font-style: italic;
+}
