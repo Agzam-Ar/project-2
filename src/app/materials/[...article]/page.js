@@ -34,7 +34,6 @@ export default async function Materials({ params }) {
 export async function generateStaticParams() {
     // const treeResponse = await fetch(process.env.URL + '/articles/tree.json');
     // const tree = await treeResponse.json();
-    
     // let articles = [];
     // const parsePage = (tree, url=[]) => {
     //     // console.log(tree);
