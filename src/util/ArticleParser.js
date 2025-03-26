@@ -10,12 +10,14 @@ import Prism from "prismjs";
 import 'prismjs/components/prism-javascript';
 
 import DOMPurify from 'dompurify'
-import Prefs from '@/util/Prefs';
 import Link from 'next/link';
-import styles from "./ArticleParser.module.css";
 
 import CodeBlock from "@/components/CodeBlock";
+import TestField from "@/components/TestField";
 import Quiz from "@/components/Quiz";
+import Prefs from '@/util/Prefs';
+
+import styles from "./ArticleParser.module.css";
 
 const processor = unified()
   .use(remarkParse)
@@ -23,6 +25,10 @@ const processor = unified()
   .use(remarkFrontmatter)
   .use(remarkGfm)
   .use(remarkMath)
+
+/*
+ * TODO: save correct tests to localStorage
+ */
 
 const ArticleParser = {
 	
@@ -33,8 +39,19 @@ const ArticleParser = {
 		let Vars = {};
 		
 		removePosition(tree, {force: true});
-		let testId = 0;
 		
+		let testId = 0;
+		let eTests = [];
+
+		let completedTests = [];
+		const onComplete = (tid) => {
+			completedTests[tid] = true;
+			console.log(completedTests);
+			for (let state of completedTests) if(!state) return;
+			console.log("All correct!", url);
+			Prefs.set(`test-/${url}`, true);
+		};
+
 		const build = (tree) => {
 			let elements = [];
 			for (let node of tree) {
@@ -92,6 +109,39 @@ const ArticleParser = {
                                 }}
                             />
                         );
+                        continue;
+                    }
+                    if(node.lang == 'test') {
+                        const config = {
+                            answer: /.*/,
+                            validator: /.*/,
+                            placeholder: "error",
+                            filter: undefined,
+                        };
+                        try {
+                            const parseRegexp = (str, def=str) => {
+                                if(str.startsWith("/")) {
+                                    let match = str.match(new RegExp('^/(.*?)/([gimy]*)$'));
+                                    if(match == null) return def;
+                                    if(match[1] == undefined) return def;
+                                    if(match[2] == undefined) return def;
+                                    return new RegExp(match[1], match[2]);
+                                }
+                                return def;
+                            }
+                            const configJson = JSON.parse(`{${node.value}}`);
+                            config.answer = configJson.answer.startsWith("$") ? Vars[configJson.answer] : configJson.answer;
+                            config.validator = parseRegexp(configJson.validator, undefined);
+                            config.placeholder = configJson.placeholder;
+                            config.filter = configJson.filter;
+                        } catch(e) {
+                            console.error(e, `\n{${node.value}}`);
+                        }
+						const tid = completedTests.length;
+						let tf = <TestField key={elements.length} onComplete={() => onComplete(tid)} config={config}/>;
+                        elements.push(tf);
+                        eTests.push(tf);
+                        completedTests.push(false);
                         continue;
                     }
 					elements.push(

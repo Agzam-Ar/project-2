@@ -1,0 +1,92 @@
+.box {
+	font-size: 110%;
+	font-family: var(--font-title);
+	display: flex;
+	border-radius: var(--border-radius);
+	border: 1px var(--border-color) solid;
+	background: var(--background-light);
+	height: 2em;
+	width: fit-content;
+    transition: .15s ease;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+.input {
+	font-size: inherit;
+	font-family: inherit;
+	color: inherit;
+	padding: 0 0 0 1em;
+	height: 100%;
+	background: transparent;
+	display: flex;
+    align-items: center;
+    transition: .15s ease;
+}
+
+.box.wrong-input {
+	color: var(--warn-color);
+	background: var(--warn-background);
+	border-color: var(--warn-color);
+}
+
+.box.correct > .input {
+	pointer-events: none !important;
+	user-select: none !important;
+}
+
+.box.wrong-input > .input {
+	text-decoration-line: spelling-error;
+}
+
+.check {
+	cursor: pointer;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	width: 2em;
+    user-select: none;
+    background: transparent;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+	transition: .15s ease;
+	opacity: .6;
+}
+
+.check > * {
+	width: 1em;
+	height: 1em;
+	stroke-width: 1.5em;
+}
+
+.check:hover {
+	opacity: 1;
+}
+
+.check.empty {
+	pointer-events: none;
+	cursor: auto;
+	opacity: 0;
+}
+
+.box.wrong-animation {
+  	animation: shake 0.15s ease-in-out;
+	color: var(--error-color);
+	background: var(--error-background);
+	border-color: var(--error-color);
+}
+
+.box.correct {
+	pointer-events: none;
+	user-select: none;
+	color: var(--correct-color);
+	background: var(--correct-background);
+	border-color: var(--correct-color);
+}
+
+@keyframes shake {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(5px) rotate(1deg); }
+    50% { transform: translate(0, 0) rotate(0eg); }
+    75% { transform: translate(-5px) rotate(-1deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}

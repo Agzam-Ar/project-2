@@ -1,0 +1,29 @@
+
+
+.article-box {
+	width: var(--read-width);
+	max-width: var(--read-width);
+	min-width: var(--read-width);
+	padding-top: 3em;
+	padding-bottom: 50vh;
+	padding-left: 20px;
+	font-family: ui-sans-serif, "Segoe UI", Roboto, "Inter", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+.article-box > * {
+}
+
+.article-box > * {
+	padding: 0;
+	margin: 0;
+}
+
+.article-box > code {
+	border-color: transparent;
+	color: var(--foreground);
+	background: var(--code-background);
+	border: 1px var(--border-color) solid;
+	border-radius: var(--border-radius);
+	padding: .1em .3em;
+}
+
