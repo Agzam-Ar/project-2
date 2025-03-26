@@ -15,6 +15,7 @@ import Link from 'next/link';
 import styles from "./ArticleParser.module.css";
 
 import CodeBlock from "@/components/CodeBlock";
+import Quiz from "@/components/Quiz";
 
 const processor = unified()
   .use(remarkParse)
@@ -31,7 +32,8 @@ const ArticleParser = {
 		const tree = await processor.run(parseTree);
 		let Vars = {};
 		
-		removePosition(tree, {force: true})
+		removePosition(tree, {force: true});
+		let testId = 0;
 		
 		const build = (tree) => {
 			let elements = [];
@@ -62,6 +64,36 @@ const ArticleParser = {
 					continue;
 				}
 				if(node.type == 'code') {
+                    if(node.lang == 'init') {
+						const Vars_ = eval(`let Vars = {};${node.value};Vars;`);
+						Vars = {...Vars, ...Vars_};
+						continue;
+                    }
+                    if(node.lang == 'quiz') {
+						let lines = node.value.split("\n");
+						let items = [];
+						let corrects = 0;
+						for (let line of lines) {
+							let val = line.substring(1);
+							let correct = line.charAt(0) == "+";
+							corrects += correct;
+							items.push({
+								correct: correct,
+								value: val.charAt(0) == '$' ? Vars[val] : val,
+							});
+						}
+                        elements.push(
+                            <Quiz
+                                key={elements.length}
+                                id={testId++}
+                                url={url}
+                                config={{
+                                	items: items,
+                                }}
+                            />
+                        );
+                        continue;
+                    }
 					elements.push(
 						<CodeBlock
 							key={elements.length}

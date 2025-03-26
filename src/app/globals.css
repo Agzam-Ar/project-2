@@ -24,6 +24,7 @@
     --navbar-background: #1a1a1a;
     --navbar-item-color: #888888;
 
+    /* Filter */
     --filter-background-hover: #1a1a1a;
     --filter-low: #48A859;
     --filter-low-background: #15331A;
@@ -32,10 +33,10 @@
     --filter-high: #A34747;
     --filter-high-background: #331515;
 
+    /* Dropdown */
     --dropdown-background: #111;
     --dropdown-background-hover: #1a1a1a;
     --dropdown-border-color: #1a1a1a;
-
     --dropdown-background-hover: #1a1a1a;
 
     /* Code colors */
@@ -53,6 +54,19 @@
     --code-parameter: var(--code-var);
     --code-number: var(--code-var);
     --code-operator: #f96d55;
+
+    --code-code-language: var(--code-class-name);
+    --code-code-block: var(--code-string);
+    --code-list: var(--code-var);
+    --code-hr: var(--code-var);
+
+    /* Tests */
+    --correct-color: #48a859;
+    --correct-background: #15331A;
+    --warn-color: #A59647;
+    --warn-background: #333315;
+    --error-color: #A34747;
+    --error-background: #331515;
 }
 
 
