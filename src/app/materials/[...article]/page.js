@@ -19,7 +19,7 @@ function fetchArticle(url, pathname) {
 export default async function Materials({ params }) {
     const { article } = await params;
     const url = article.join("/");
-    const response = await fetch(process.env.URL + `/articles/${url}`);
+    const response = await fetch(process.env.url + `/articles/${url}`);
     const text = await response.text();
     return (
         <>
@@ -32,7 +32,7 @@ export default async function Materials({ params }) {
 
 
 export async function generateStaticParams() {
-    // const treeResponse = await fetch(process.env.URL + '/articles/tree.json');
+    // const treeResponse = await fetch(process.env.url + '/articles/tree.json');
     // const tree = await treeResponse.json();
     
     // let articles = [];
