@@ -1,0 +1,27 @@
+{
+  "name": "project-1",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "dompurify": "^3.2.4",
+    "next": "15.1.7",
+    "prismjs": "^1.29.0",
+    "react": "^19.0.0",
+    "react-code-blocks": "^0.1.6",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "remark-directive": "^4.0.0",
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "unified": "^11.0.5",
+    "unist-util-remove-position": "^5.0.0"
+  }
+}
