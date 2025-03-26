@@ -1,0 +1,8 @@
+.page {
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    flex-grow: 1;
+    box-sizing: content-box;
+    align-items: flex-start;
+}

@@ -1,0 +1,19 @@
+.page {
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    flex-grow: 1;
+    box-sizing: content-box;
+    align-items: flex-start;
+}
+
+.content-box {
+    width: var(--read-width);
+    max-width: var(--read-width);
+    min-width: var(--read-width);
+    flex-grow: 1;
+    box-sizing: content-box;
+    margin-left: 1em;
+    margin-top: 1em;
+    margin-bottom: 50vh;
+}
