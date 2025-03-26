@@ -7,6 +7,7 @@
     position: relative;
     font-family: var(--font-title);
     user-select: none;
+    min-width: 240px;
 }
 
 .box {
@@ -27,7 +28,7 @@
 }
 
 .box:hover {
-    background: var(--background-light);
+    background: var(--filter-background-hover);
 }
 
 .filter.active {
@@ -35,7 +36,7 @@
 }
 
 .filter:hover {
-    background: var(--background-light);
+    background: var(--dropdown-background-hover);
 }
 
 .icon {
