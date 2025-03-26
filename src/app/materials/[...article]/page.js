@@ -6,7 +6,7 @@ import ContentTable from "@/components/ContentTable";
 
 function fetchArticle(url, pathname) {
     return new Promise((resolve) => {
-        fetch(`/articles${url}`).then(response => {
+        fetch(process.env.URL + `/articles${url}`).then(response => {
             if (!response.ok) {
                 resolve(null);
                 return;
