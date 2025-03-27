@@ -44,7 +44,7 @@ export async function generateStaticParams() {
             return;
         }
         for (let child of tree.child) {
-            parsePage(child, [...url, child.url]);
+            parsePage(child, [...url, tree.url]);
         }
     };
     for (let child of tree) parsePage(child);
