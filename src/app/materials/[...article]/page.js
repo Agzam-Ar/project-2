@@ -3,6 +3,9 @@ import styles from "./page.module.css";
 
 import Article from "@/components/Article";
 import ContentTable from "@/components/ContentTable";
+import Vars from '@/util/Vars';
+
+// import articlesTree from '@/../../articles/tree.json'
 
 function fetchArticle(url, pathname) {
     return new Promise((resolve) => {
@@ -32,7 +35,7 @@ export default async function Materials({ params }) {
 
 
 export async function generateStaticParams() {
-    const treeResponse = await fetch(Vars.env.url + '/articles/tree.json');
+    const treeResponse = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/articles/tree.json');
     const tree = await treeResponse.json();
     let articles = [];
     const parsePage = (tree, url=[]) => {
