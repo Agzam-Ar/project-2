@@ -11,7 +11,9 @@ import Filter from '@/components/Filter';
 import Icons from '@/static/Icons';
 import Filters from '@/static/Filters';
 import Prefs from '@/util/Prefs';
+import Vars from '@/util/Vars';
 import { usePrefs } from '@/hooks/usePrefs';
+
 
 export default function ContentTable({onSelect, url, rootUrl}) {
     const filterButton = (text, icon, values=[{text: "Unset"}], marks, onClick=()=>{}) => {
@@ -65,9 +67,9 @@ export default function ContentTable({onSelect, url, rootUrl}) {
     const [contentTablePromise, setContentTablePromise] = useState(null);
     useEffect(() => {
        const loadContentTablePromise = async () => {
-            console.log('env', process.env.URL);
+            console.log('env', Vars.env.url);
             console.log('url', url);
-            const result = await fetch(url); // TODO
+            const result = await fetch(Vars.env.url + url); // TODO
             const data = await result.json();
             return data;
        };
