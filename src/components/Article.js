@@ -12,8 +12,8 @@ async function ArticleContent({ markdown, url }) {
 
 export default function Article({markdown, url}) {
     // const content = await ArticleParser.parse(markdown, url);
-	return 
-    <Suspense fallback={<p>Загрузка статьи...</p>}>
-      <ArticleContent markdown={markdown} url={url}/>
-    </Suspense>;
+	return ArticleParser.parse(markdown, url);
+    // <Suspense fallback={<p>Загрузка статьи...</p>}>
+      // <ArticleContent markdown={markdown} url={url}/>
+    // </Suspense>;
 }

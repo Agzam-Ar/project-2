@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import Article from "@/components/Article";
 import ContentTable from "@/components/ContentTable";
 import Vars from '@/util/Vars';
+import ArticleParser from "@/util/ArticleParser";
 
 // import articlesTree from '@/../../articles/tree.json'
 
@@ -23,15 +24,26 @@ export default async function Materials({ params }) {
     const { article } = await params;
     const url = article.join("/");
     const response = await fetch(process.env.URL + `/articles/${url}`);
-    const text = await response.text();
+    const markdown = await response.text();
+    const content = await ArticleParser.parse(markdown, url);
     return (
         <>
             <div className={styles["article-box"]}>
-                <Article markdown={text} url={url}/>
+                {/*{content}*/}
+                <Article markdown={markdown} url={url}/>
             </div>
         </>
     );
 }
+// export default function Materials({ content }) {
+//     return (
+//         <>
+//             <div className={styles["article-box"]}>
+//                 {content}
+//             </div>
+//         </>
+//     );
+// }
 
 
 export async function generateStaticParams() {
@@ -50,3 +62,16 @@ export async function generateStaticParams() {
     for (let child of tree) parsePage(child);
     return articles;
 }
+
+// export async function getStaticProps({ params }) {
+//     const { article } = await params;
+//     const url = article.join("/");
+//     const response = await fetch(process.env.URL + `/articles/${url}`);
+//     const markdown = await response.text();
+//     const content = await ArticleParser.parse(markdown, url);
+//     return {
+//         props: {
+//           content,
+//         },
+//     };
+// }
