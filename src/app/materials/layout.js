@@ -1,4 +1,3 @@
-
 import ContentTable from "@/components/ContentTable";
 import styles from "./layout.module.css";
 
