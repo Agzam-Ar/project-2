@@ -67,7 +67,7 @@ export default function ContentTable({onSelect, url, rootUrl}) {
        const loadContentTablePromise = async () => {
             console.log('env', process.env.URL);
             console.log('url', url);
-            const result = await fetch(process.env.URL + url); // TODO
+            const result = await fetch(url); // TODO
             const data = await result.json();
             return data;
        };
