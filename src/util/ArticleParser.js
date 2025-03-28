@@ -32,12 +32,14 @@ const processor = unified()
 
 const ArticleParser = {
 	
-	parse: async (markdown, url) => {
-
+	parse: async (markdown) => {
 		const parseTree = processor.parse(markdown);
 		const tree = await processor.run(parseTree);
+		return tree;
+	},
+
+	build: (tree, url) => {
 		let Vars = {};
-		
 		removePosition(tree, {force: true});
 		
 		let testId = 0;
