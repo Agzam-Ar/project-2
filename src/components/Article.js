@@ -25,7 +25,7 @@ import styles from "./Article.module.css";
 
 
 export default function Article({data}) {
-	const [ content, setContent ] = useState(null);
+	const [ content, setContent ] = useState("loading");
 
 	useEffect(() => {
 		setContent(ArticleParser.build(data));
