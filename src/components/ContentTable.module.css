@@ -8,6 +8,8 @@
     overflow-y: visible;
     box-sizing: content-box;
     max-height: 50vh;
+
+    max-height: 100px;
 }
 
 .filters-box {
@@ -144,6 +146,7 @@
     user-select: none;
     font-family: var(--font-title);
     padding-left: 1em;
+    max-width: var(--content-table-width);
 }
 
 .content-table-element {
@@ -208,6 +211,12 @@
     margin-right: .25em;
     transform: rotate(-90deg);
     transition: .15s ease;
+}
+
+.content-table-group-title-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .content-table-group-title-icon.expanded {

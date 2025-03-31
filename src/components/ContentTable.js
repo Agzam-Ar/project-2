@@ -145,7 +145,7 @@ function ContentTableHolder({contentTablePromise, onSelect, rootUrl, filters}) {
                 <div key={url + c.url} className={`${styles["content-table-group-box"]} ${styles[visible ? `ctg-visible` : `ctg-hidden`]}`}>
                     <div className={styles["content-table-group-title-box"]} onClick={() => setOpen(o => !o)}>
                         <div className={`${styles["content-table-group-title-icon"]} ${styles[open ? "expanded" : ""]}`}>{Icons.expand}</div>
-                        {c.title}
+                        <div className={styles['content-table-group-title-text']}>{c.title}</div>
                     </div>
                     <div key={url + c.url} className={`${styles["content-table-group"]} ${styles[open ? "visible" : "hidden"]}`}>
                         {contentTable.elements}
