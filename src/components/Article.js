@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useEffect, useState } from "react";
 import ArticleParser from "@/util/ArticleParser";
 import Vars from '@/util/Vars';
 
@@ -25,5 +25,11 @@ import styles from "./Article.module.css";
 
 
 export default function Article({data}) {
-	return (<div>{ArticleParser.build(data)}</div>);
+	const [ content, setContent ] = useState(null);
+
+	useEffect(() => {
+		setContent(ArticleParser.build(data));
+	}, []);
+
+	return (<div>{content}</div>);
 }

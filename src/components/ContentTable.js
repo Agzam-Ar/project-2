@@ -14,7 +14,6 @@ import Prefs from '@/util/Prefs';
 import Vars from '@/util/Vars';
 import { usePrefs } from '@/hooks/usePrefs';
 
-
 export default function ContentTable({onSelect, url, rootUrl}) {
     const filterButton = (text, icon, values=[{text: "Unset"}], marks, onClick=()=>{}) => {
         const [open, setOpen] = React.useState(false);
@@ -67,8 +66,6 @@ export default function ContentTable({onSelect, url, rootUrl}) {
     const [contentTablePromise, setContentTablePromise] = useState(null);
     useEffect(() => {
        const loadContentTablePromise = async () => {
-            console.log('env', Vars.env.url);
-            console.log('url', url);
             const result = await fetch(Vars.env.url + url); // TODO
             const data = await result.json();
             return data;
