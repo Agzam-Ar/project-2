@@ -169,7 +169,7 @@ function ContentTableElement({c, tags, pathname, rootUrl, curl, visible}) {
     }, []);
     return (
     <Link className={`${styles["content-table-element"]} ${styles[`cte-difficulty-${tags.difficulty}`]} ${styles[pathname == `${rootUrl + curl}` ? "cte-active" : (visible ? `cte-visible` : `cte-hidden`)]}${completed ? " "+styles["completed"] : ""}`} href={rootUrl + curl}>
-        <div className={styles["content-table-element-text"]}>{c.title}</div>{completed ? Icons.checkmark : null}
+        {completed ? Icons.checkmark : null} <div className={styles["content-table-element-text"]}>{c.title}</div>
         <div className={styles["filter-tag-prop-box"]}>
             <div className={styles["filter-tag-prop"]} style={{color: Filters.difficulties[tags.difficulty].colors[0]}}>{Icons.difficulty}<label>{Filters.difficulties[tags.difficulty].desc}</label></div>
             <div className={styles["filter-tag-prop"]} style={{color: Filters.durations[tags.duration].colors[0]}}>{Icons.time}<label>{Filters.durations[tags.duration].desc}</label></div>

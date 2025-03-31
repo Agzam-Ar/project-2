@@ -7,6 +7,7 @@
     --font-code:  "Atkinson Hyperlegible Mono", monospace;
     --border-radius: 5px;
     --read-width: 700px;
+    --content-table-width: 300px;
 
     /* Theme colors */
     --background: #0a0a0a;
@@ -32,6 +33,8 @@
     --filter-normal-background: #332B15;
     --filter-high: #A34747;
     --filter-high-background: #331515;
+
+    --content-table-group-border-color: var(--border-color);
 
     /* Dropdown */
     --dropdown-background: #111;
