@@ -5,6 +5,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-c';
+import 'prismjs/components/prism-pascal';
 import 'prismjs/components/prism-markdown';
 
 import styles from "./CodeBlock.module.css";
