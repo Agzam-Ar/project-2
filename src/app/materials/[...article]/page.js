@@ -3,7 +3,7 @@ import Article from "@/components/Article";
 import Vars from "@/util/Vars";
  
 export async function getStaticPaths() {
-    const treeResponse = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'articles/tree.json');
+    const treeResponse = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/articles/tree.json');
     const tree = await treeResponse.json();
     let articles = [];
     const parsePage = (tree, url=[]) => {
@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 export async function _getStaticProps({ params }) {
     const {article} = await params;
     const url = article.join("/");
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + `articles/${url}`);
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + `/articles/${url}`);
     const markdown = await response.text();
     const content = await ArticleParser.parse(markdown);
     return { props: { article: content} }
