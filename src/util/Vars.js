@@ -3,7 +3,7 @@
 const Vars = {
 	
 	env: {
-		url: process.env.NODE_ENV == 'development' ? "" : (process.env.URL == undefined ? 'https://agzam-ar.github.io/project-2' : process.env.URL),
+		url: process.env.NODE_ENV == 'development' ? "http://localhost:3000/" : (process.env.URL == undefined ? 'https://github.com/Agzam-Ar/project-2/tree/main/public/articles' : process.env.URL),
 	}
 };
 
