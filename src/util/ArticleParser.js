@@ -6,6 +6,9 @@ import remarkParse from 'remark-parse'
 import {unified} from 'unified'
 import {removePosition} from 'unist-util-remove-position'
 
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
+
 import Prism from "prismjs";
 import 'prismjs/components/prism-javascript';
 
@@ -75,6 +78,12 @@ const ArticleParser = {
 				if(node.type == 'link') {
 					Tag = Link;
 					attr.href = `${node.url}`;
+				}
+				if(node.type == 'inlineMath') {
+					Tag = InlineMath;
+				}
+				if(node.type == 'math') {
+					Tag = BlockMath;
 				}
 				if(node.type == 'html') {
 					// console.log(JSON.stringify(node, null, 4));
