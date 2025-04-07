@@ -41,5 +41,5 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
     const { props } = await _getStaticProps({ params });
     const { article } = await props;
-    return "debug"; // <Article data={article}/>
+    return <Article data={article}/>
 }
