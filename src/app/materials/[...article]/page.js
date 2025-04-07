@@ -1,8 +1,9 @@
 import ArticleParser from "@/util/ArticleParser";
 import Article from "@/components/Article";
+import Vars from "@/util/Vars";
  
 export async function getStaticPaths() {
-    const treeResponse = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/articles/tree.json');
+    const treeResponse = await fetch(/*process.env.NEXT_PUBLIC_BASE_URL*/Vars.env.url + '/articles/tree.json');
     const tree = await treeResponse.json();
     let articles = [];
     const parsePage = (tree, url=[]) => {
@@ -24,7 +25,7 @@ export async function getStaticPaths() {
 export async function _getStaticProps({ params }) {
     const {article} = await params;
     const url = article.join("/");
-    const response = await fetch(process.env.URL + `/articles/${url}`);
+    const response = await fetch(Vars.env.url + `/articles/${url}`);
     const markdown = await response.text();
     const content = await ArticleParser.parse(markdown);
     return { props: { article: content} }
@@ -40,5 +41,5 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
     const { props } = await _getStaticProps({ params });
     const { article } = await props;
-    return <Article data={article}/>;
+    return "debug"; // <Article data={article}/>
 }
