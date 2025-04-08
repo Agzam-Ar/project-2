@@ -14,11 +14,13 @@ import 'prismjs/components/prism-javascript';
 
 import DOMPurify from 'dompurify'
 import Link from 'next/link';
+import Image from 'next/image'
 
 import CodeBlock from "@/components/CodeBlock";
 import TestField from "@/components/TestField";
 import Quiz from "@/components/Quiz";
 import Prefs from '@/util/Prefs';
+import Vars_ from '@/util/Vars';
 
 import styles from "./ArticleParser.module.css";
 
@@ -78,6 +80,15 @@ const ArticleParser = {
 				if(node.type == 'link') {
 					Tag = Link;
 					attr.href = `${node.url}`;
+				}
+				if(node.type == 'image') {
+					Tag = Image;
+					attr.src = `${node.url}`;
+					console.log(node);
+					// elements.push(<Image key={elements.length} className={styles[`md-${className}`]} alt={node.alt} src={`/images/${node.url}`} width={0} 
+  // sizes="100vw" height={0}/>);
+					elements.push(<img key={elements.length} className={styles[`md-${className}`]} src={`${Vars_.env.url}/images/${node.url}`}/>);
+					continue;
 				}
 				if(node.type == 'inlineMath') {
 					Tag = InlineMath;
