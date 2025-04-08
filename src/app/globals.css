@@ -64,6 +64,9 @@
     --code-list: var(--code-var);
     --code-hr: var(--code-var);
 
+    --inline-code-border-color: #171717;
+    --inline-code-background: #111;
+
     /* Tests */
     --correct-color: #48a859;
     --correct-background: #15331A;
@@ -81,6 +84,7 @@
 }
 
 html, body {
+    overflow: hidden;
     max-width: 100vw;
     max-height: 100vh;
     overflow-x: hidden;

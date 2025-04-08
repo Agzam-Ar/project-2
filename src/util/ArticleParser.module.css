@@ -26,7 +26,9 @@
 }
 
 .md-emphasis {
+    display: inline-block;
     font-style: italic;
+    color: var(--unaccent-color);
 }
 
 .md-inlineCode {
@@ -34,8 +36,8 @@
     color: var(--foreground);
     font-family: var(--font-code);
     font-size: 80%;
-    background: var(--code-background);
-    border: 1px var(--border-color) solid;
+    background: var(--inline-code-background);
+    border: 1px var(--inline-code-border-color) solid;
     border-radius: var(--border-radius);
     padding: .05em .3em;
 }
@@ -136,6 +138,16 @@ h2.md-heading {
 
 .md-html {}
 
+
+.md-image {
+/*    width: calc(var(--read-width) / 2);*/
+    height: 15em;
+    aspect-ratio: auto;
+    border-radius: var(--border-radius);
+    border: 1px var(--border-color) solid;
+    pointer-events: none;
+    margin: 1em auto;
+}
 
 .md-thematicBreak {
     width: calc(100% + 2em);
