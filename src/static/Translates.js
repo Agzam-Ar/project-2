@@ -25,6 +25,10 @@ const Translates = {
 	quiz: {
 		check: "Проверить"
 	},
+
+	stats: {
+		progress: "Прогресс"
+	}
 }
 
 

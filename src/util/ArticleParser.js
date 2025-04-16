@@ -56,7 +56,7 @@ const ArticleParser = {
 			console.log(completedTests);
 			for (let state of completedTests) if(!state) return;
 			console.log("All correct!", url);
-			Prefs.set(`test-/${url}`, true);
+			Prefs.set(`test-${url}`, true);
 		};
 
 		const build = (tree) => {

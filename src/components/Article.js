@@ -24,11 +24,11 @@ import styles from "./Article.module.css";
 // }
 
 
-export default function Article({data}) {
+export default function Article({data, url}) {
 	const [ content, setContent ] = useState("loading");
 
 	useEffect(() => {
-		setContent(ArticleParser.build(data));
+		setContent(ArticleParser.build(data, url));
 	}, []);
 
 	return (<div>{content}</div>);

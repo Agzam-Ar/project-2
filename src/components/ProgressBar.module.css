@@ -1,31 +1,12 @@
 
 
-.page {
-	display: flex;
-	width: 100%;
-	justify-content: center;
-	height: fit-content;
-}
-
-.main {
-	display: flex;
-	width: var(--read-width);
-    flex-direction: column;
-}
-
-.completed-box {
-	display: flex;
-	flex-direction: column;
-}
-
-.progress-bar-box {
+.box {
 	display: flex;
 	position: relative;
 	width: 100%;
 	min-width: 5em;
 	border-radius: var(--border-radius);
 	border: 2px var(--accent-color-bright) solid;
-/*	box-shadow: 0 0 0 2px var(--accent-color-bright);*/
 	background: var(--accent-color-darker);
 	font-family: var(--font-title);
 	text-align: center;
@@ -41,10 +22,9 @@
 		 0px -1px 0#000,
 		-1px  0px 0#000
 		;
-
 }
 
-.progress-bar-fill {
+.fill {
 	position: absolute;
 	left: 0;
     background: 
@@ -57,31 +37,7 @@
 
 	transform-origin: left;
 	animation: progress-bar-filling 2s ease-in;
-
-/*	transform: matrix(1, 0, 0, 1, 0, 0);*/
 }
-
-/*.progress-bar-unfill {
-	position: absolute;
-	right: 0;
-    background: linear-gradient(45deg, 
-    		var(--accent-color-bright) 25%,
-    		var(--accent-color) 25%,
-    		var(--accent-color) 50%,
-    		var(--accent-color-bright) 50%,
-    		var(--accent-color-bright) 75%,
-    		var(--accent-color) 75%);
-
-	background-size: 40px 40px;
-	height: 100%;
-	width: 33%;
-
-	transform-origin: left;
-	transition: .3s ease-in;
-
-	animation: progress-bar-filling 5s linear;
-}*/
-
 
 @keyframes progress-bar-filling {
 

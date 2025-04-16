@@ -28,7 +28,7 @@ export async function _getStaticProps({ params }) {
     const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + `/articles/${url}`);
     const markdown = await response.text();
     const content = await ArticleParser.parse(markdown);
-    return { props: { article: content} }
+    return { props: { article: content, url: url} }
 }
 
 
@@ -40,6 +40,6 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }) {
     const { props } = await _getStaticProps({ params });
-    const { article } = await props;
-    return <Article data={article}/>
+    const { article, url } = await props;
+    return <Article data={article} url={url}/>
 }

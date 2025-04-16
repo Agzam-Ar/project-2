@@ -1,0 +1,26 @@
+
+
+.digit {
+	white-space: break-spaces;
+	height: fit-content;
+	animation: spin 1s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.box {
+	display: inline-flex;
+	height: 1.25em;
+	overflow: hidden;
+}
+
+@keyframes spin {
+
+	0% {
+		transform: translateY(calc(-100% + 1em));
+	}
+
+
+	100% {
+		transform: translateY(0);
+	}
+
+}
