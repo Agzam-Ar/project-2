@@ -9,6 +9,8 @@ import Vars from "@/util/Vars";
 import Prefs from "@/util/Prefs";
 import AnimatedNumber from "@/components/text/AnimatedNumber";
 import ProgressBar from "@/components/ProgressBar";
+import Filters from "@/static/Filters";
+import Icons from "@/static/Icons";
 
 export default function Home() {
 
@@ -59,7 +61,10 @@ function HomeHolder({contentTablePromise}) {
                 urls.push({
                     title: c.title,
                     url: curl,
-                    completed: completed
+                    completed: completed,
+                    priority: c.priority == undefined ? Filters.priorities.values[0].tag : c.priority,
+                    duration: c.duration,
+                    difficulty: c.difficulty == undefined ? Filters.difficulties.values[0].tag : c.difficulty,
                 });
                 continue;
             }
@@ -79,19 +84,53 @@ function HomeHolder({contentTablePromise}) {
     console.log(contentTable);
 
 
+    const sortedUrls = [...urls].filter((e) => !e.completed);
+
+    sortedUrls.sort((a,b) => {
+        let aPriority = Filters.priorities[a.priority];
+        let bPriority = Filters.priorities[b.priority];
+        aPriority = aPriority == undefined ? 0 : aPriority.id;
+        bPriority = bPriority == undefined ? 0 : bPriority.id;
+        if(aPriority != bPriority) return aPriority - bPriority;
+
+        // if time more than we has sort by "difficulty" but else sort by "duractions" and then by "difficulty"
+
+        let aDuration = Filters.durations[a.duration];
+        let bDuration = Filters.durations[b.duration];
+        aDuration = aDuration == undefined ? 0 : aDuration.id;
+        bDuration = bDuration == undefined ? 0 : bDuration.id;
+
+        return aDuration > bDuration ? 1 : -1;
+    });
+
+
     return <>
         {/*<h1>{Translates.stats.progress}</h1>*/}
-        {/*<div className={styles['progress-bar-box']}>
-            <div className={styles['progress-bar-fill']} style={{
-                maxWidth: `${completedAmount*100/urls.length}%`,
-                animationDuration: `${Math.log10(Math.max(Math.round(completedAmount*100/urls.length), completedAmount)+1) + .5}s`,
-            }}
-            ></div>
-            <AnimatedNumber startValue={0} targetValue={completedAmount}/>/{urls.length} (<AnimatedNumber startValue={0} targetValue={Math.round(completedAmount*100/urls.length)}/>%)
-        </div>*/}
         <ProgressBar value={completedAmount} maxValue={urls.length}/>
         <div className={styles['completed-box']}>
             {/*{urls.map((e,i) => <div key={i} style={{color: e.completed ? "#0f0" : "#f00"}}>{e.title + "\n"}</div>)}*/}
         </div>
+        <div className={styles['grid-3x']}>
+        <ProgressBar value={completedAmount} maxValue={urls.length}/>
+        <ProgressBar value={completedAmount} maxValue={urls.length}/>
+        <ProgressBar value={completedAmount} maxValue={urls.length}/>
+        </div>
+
+
+        {/*<h1>{Translates.stats.roadmap}</h1>*/}
+        <div className={`${styles['grid-2x']} ${styles['articles-grid']}`}>
+        {
+            sortedUrls.map((e,i) => 
+            <div key={i} className={styles["article-box"]}>
+                <h2>{e.title}</h2>
+                <div className={styles["filter-tag-prop-box"]}>
+                    {/*<div className={styles["filter-tag-prop"]} style={{color: Filters.difficulties[e.difficulty].colors[0]}}>{Icons.difficulty}<label>{Filters.difficulties[e.difficulty].desc}</label></div>*/}
+                    <div className={styles["filter-tag-prop"]} style={{}/*{color: Filters.durations[e.duration].colors[0]}*/} >{Icons.time}<label>{Filters.durations[e.duration].desc}</label></div>
+                    <div className={styles["filter-tag-prop"]} style={{}/*{color: Filters.priorities[e.priority].colors[0]}*/}>{Icons.priority}<label>{Filters.priorities[e.priority].desc}</label></div>
+                </div>
+            </div>)
+        }
+        </div>
+
     </>
 }

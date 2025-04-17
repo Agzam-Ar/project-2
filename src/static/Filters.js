@@ -15,6 +15,7 @@ const Filters = {
 			{
 	    		name: "Легко",
 				colors: Pattle.low,
+				tag: "ease",
 			},
 			{
 	    		name: "Нормально",
@@ -89,14 +90,17 @@ const Filters = {
 			{
 	    		name: "Основное",
 				colors: Pattle.low,
+				tag: "base",
 			},
 			{
 	    		name: "Расширенное",
 				colors: Pattle.normal,
+				tag: "advanced",
 			},
 			{
 	    		name: "Дополнительное",
 				colors: Pattle.high,
+				tag: "extra",
 			},
 		],
 
