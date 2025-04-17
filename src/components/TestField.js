@@ -9,13 +9,27 @@ import Prefs from '@/util/Prefs';
 
 export default function TestField({config, onComplete}) {
 
+
+    const parseRegexp = (str, def=str) => {
+        if(str.startsWith("/")) {
+            let match = str.match(new RegExp('^/(.*?)/([gimy]*)$'));
+            if(match == null) return def;
+            if(match[1] == undefined) return def;
+            if(match[2] == undefined) return def;
+            return new RegExp(match[1], match[2]);
+        }
+        return def;
+    }
+
+    const validator = parseRegexp(config.validator);
+
   	const [errAnimation, setErrAnimation] = useState(false);
 
 	const [value, setValue] = useState('');
 	const [answer, setAnswer] = useState('');
 	
 	const empty = /^\s*$/.test(value);
-	const wrongInput = !empty && config.validator != undefined && config.validator instanceof RegExp && !config.validator.test(value);
+	const wrongInput = !empty && validator != undefined && validator instanceof RegExp && !validator.test(value);
 
 	const check = (answer) => {
 		if(config.answer instanceof RegExp) return config.answer.test(answer);
