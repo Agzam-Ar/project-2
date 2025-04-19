@@ -76,6 +76,7 @@
     font-weight: bold;
     text-decoration: none;
     padding: .15em .75em;
+    white-space: nowrap;
 }
 
 .item > div > span {
