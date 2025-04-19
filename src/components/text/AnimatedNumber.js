@@ -4,12 +4,10 @@ import styles from './AnimatedNumber.module.css'
 
 export default function AnimatedNumber({startValue, targetValue}) {
 	let digits = [];
-	console.log(startValue, targetValue);
 	let repeats = Math.log10(Math.max(startValue, targetValue)+1);
 	for(let m = 1; m <= Math.max(startValue, targetValue); m *= 10) {
 		let s = startValue/m%10;
 		let t = targetValue/m%10;
-		console.log(s, t, repeats);
 		let str = "";
 		for(let r = 1; r < repeats; r++) {
 			for(let i = 0; i <= 9; i++) {

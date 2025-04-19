@@ -29,6 +29,10 @@
     border-radius: .3em;
     height: 2.25em;
     margin: .5em;
+    /* TODO */
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .item {

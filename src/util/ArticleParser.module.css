@@ -47,17 +47,12 @@
     margin-bottom: .1em;
     margin-top: .4em;
     margin-left: -.5em;
+    max-width: 100%;
 }
 
 .md-delete {
     text-decoration: line-through;
     color: var(--unaccent-color);
-}
-
-h1.md-heading {
-}
-
-h2.md-heading {
 }
 
 .md-paragraph {
@@ -87,7 +82,7 @@ h2.md-heading {
 
 .md-list {
     display: block;
-/*    border: 1px solid red;*/
+    max-width: 100%;
 }
 
 .md-listItem {
@@ -104,9 +99,7 @@ h2.md-heading {
 .md-table {
     display: table;
     border: 1px var(--border-color) solid;
-/*    border-radius: var(--border-radius);*/
     overflow: hidden;
-/*    margin-left: auto;*/
     margin-right: auto;
     margin-bottom: 1em;
     margin-top: 1em;
@@ -138,9 +131,7 @@ h2.md-heading {
 
 .md-html {}
 
-
 .md-image {
-/*    width: calc(var(--read-width) / 2);*/
     height: 15em;
     aspect-ratio: auto;
     border-radius: var(--border-radius);

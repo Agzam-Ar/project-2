@@ -59,6 +59,8 @@
 .item-letter {
 	width: 1em;
 	height: 1em;
+	max-width: 1em;
+	aspect-ratio: 1 / 1;
 	padding: .5em;
 	display: flex;
 	align-items: center;

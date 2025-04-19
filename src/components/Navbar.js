@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 
 import styles from "./Navbar.module.css";
 import Link from 'next/link';
+import Translates from '@/static/Translates';
 
 const Navbar = () => {
 
@@ -18,8 +19,8 @@ const Navbar = () => {
     	<div className={styles.content}>
     		<div className="flex">
 				<Link href="/"  className={styles.head}>Project 2</Link>
-				{linkButton("Home", "", null)}
-				{linkButton("Materials", "materials", null)}
+				{linkButton(Translates.navbar.home, "", null)}
+				{linkButton(Translates.navbar.materials, "materials", null)}
     		</div>
     		<div className="flex">
 				<div className="flex items-center">

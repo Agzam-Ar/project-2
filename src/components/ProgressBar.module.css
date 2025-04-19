@@ -5,6 +5,7 @@
 	position: relative;
 	width: 100%;
 	min-width: 5em;
+	height: 1.25em;
 	border-radius: var(--border-radius);
 	border: 2px var(--accent-color-bright) solid;
 	background: var(--accent-color-darker);
@@ -29,7 +30,7 @@
 	left: 0;
     background: var(--accent-color-bright);
 	background-size: 40px 40px;
-	height: 100%;
+	height: 1.25em;
 	width: 33%;
 	transform-origin: left;
 	animation: progress-bar-filling 2s ease-in;
