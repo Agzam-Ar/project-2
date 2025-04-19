@@ -11,6 +11,7 @@ import AnimatedNumber from "@/components/text/AnimatedNumber";
 import ProgressBar from "@/components/ProgressBar";
 import Filters from "@/static/Filters";
 import Icons from "@/static/Icons";
+import Link from "next/link";
 
 export default function Home() {
 
@@ -30,8 +31,17 @@ export default function Home() {
     
     <div className={styles.page}>
         <main className={styles.main}>
-            Home
-            <Suspense fallback={<div>Loading</div>}>
+            <Suspense fallback={<>
+                    <h1>{Translates.stats.progress}</h1>
+                    <ProgressBar value={0} maxValue={0}/>
+                    <div className={styles['completed-box']}></div>
+                    <h1>{Translates.stats.suggest}</h1>
+                    <div className={`${styles['grid-2x']} ${styles['articles-grid']}`}>
+                    {
+                    }
+                    </div>
+                </>
+            }>
                 <HomeHolder contentTablePromise={contentTablePromise}/>
             </Suspense>
         </main>
@@ -105,32 +115,31 @@ function HomeHolder({contentTablePromise}) {
 
 
     return <>
-        {/*<h1>{Translates.stats.progress}</h1>*/}
+        <h1>{Translates.stats.progress}</h1>
         <ProgressBar value={completedAmount} maxValue={urls.length}/>
         <div className={styles['completed-box']}>
             {/*{urls.map((e,i) => <div key={i} style={{color: e.completed ? "#0f0" : "#f00"}}>{e.title + "\n"}</div>)}*/}
         </div>
-        <div className={styles['grid-3x']}>
+       {/* <div className={styles['grid-3x']}>
         <ProgressBar value={completedAmount} maxValue={urls.length}/>
         <ProgressBar value={completedAmount} maxValue={urls.length}/>
         <ProgressBar value={completedAmount} maxValue={urls.length}/>
-        </div>
+        </div>*/}
 
 
-        {/*<h1>{Translates.stats.roadmap}</h1>*/}
+        <h1>{Translates.stats.suggest}</h1>
         <div className={`${styles['grid-2x']} ${styles['articles-grid']}`}>
         {
             sortedUrls.map((e,i) => 
-            <div key={i} className={styles["article-box"]}>
+            <Link href={`/materials${e.url}`} key={i} className={styles["article-box"]} style={{animationDelay: `${i/urls.length}s`}}>
                 <h2>{e.title}</h2>
                 <div className={styles["filter-tag-prop-box"]}>
                     {/*<div className={styles["filter-tag-prop"]} style={{color: Filters.difficulties[e.difficulty].colors[0]}}>{Icons.difficulty}<label>{Filters.difficulties[e.difficulty].desc}</label></div>*/}
-                    <div className={styles["filter-tag-prop"]} style={{}/*{color: Filters.durations[e.duration].colors[0]}*/} >{Icons.time}<label>{Filters.durations[e.duration].desc}</label></div>
-                    <div className={styles["filter-tag-prop"]} style={{}/*{color: Filters.priorities[e.priority].colors[0]}*/}>{Icons.priority}<label>{Filters.priorities[e.priority].desc}</label></div>
+                    <div className={styles["tag-prop"]} style={{color: Filters.durations[e.duration].colors[0]}}>{Icons.time}<label>{Filters.durations[e.duration].desc}</label></div>
+                    <div className={styles["tag-prop"]} style={{color: Filters.priorities[e.priority].colors[0]}}>{Icons.priority}<label>{Filters.priorities[e.priority].desc}</label></div>
                 </div>
-            </div>)
+            </Link>)
         }
         </div>
-
     </>
 }

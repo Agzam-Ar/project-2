@@ -119,6 +119,8 @@
 	background: var(--dropdown-background);
 	padding: 1em;
 	transition: .1s ease-in;
+	transform: scale(0);
+	animation: .5s cubic-bezier(0.68, -0.55, 0.27, 1.55) show-article-box forwards;
 }
 
 .article-box > h2 {
@@ -133,4 +135,25 @@
 
 .article-box:active {
 	transform: scale(.95);
+}
+
+
+@keyframes show-article-box {
+	0% {
+		opacity: 0;
+		transform: scale(.7) translateY(50%);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1)  translateY(0);
+	}
+}
+
+.tag-prop {
+	display: flex;
+	align-items: center;
+}
+
+.tag-prop > svg {
+	margin-right: .5em;
 }
