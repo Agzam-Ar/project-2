@@ -157,3 +157,17 @@
 .tag-prop > svg {
 	margin-right: .5em;
 }
+
+
+
+@media(width <= 1100px) {
+
+	.main {
+		width: calc(100% - 6em);
+		padding: 1em 3em;
+	}
+
+	.grid-2x, .grid-3x {
+		grid-template-columns: 1fr;
+	}
+}
