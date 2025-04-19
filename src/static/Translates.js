@@ -18,8 +18,8 @@ const Translates = {
 	},
 
 	navbar: {
-		materials: "Статьи",
-		practice: "Примеры",
+		home: "Главная",
+		materials: "Материалы",
 	},
 
 	quiz: {
@@ -27,7 +27,8 @@ const Translates = {
 	},
 
 	stats: {
-		progress: "Прогресс"
+		progress: "Прогресс",
+		suggest: "Рекомендовано дальше"
 	}
 }
 
