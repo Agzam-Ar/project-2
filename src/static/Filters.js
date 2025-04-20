@@ -15,15 +15,17 @@ const Filters = {
 			{
 	    		name: "Легко",
 				colors: Pattle.low,
-				tag: "ease",
+				tag: "easy",
 			},
 			{
 	    		name: "Нормально",
 				colors: Pattle.normal,
+				tag: "normal",
 			},
 			{
 	    		name: "Сложно",
 				colors: Pattle.high,
+				tag: "hard",
 			}
 		],
 	    easy: {
@@ -53,14 +55,17 @@ const Filters = {
 			{
 	    		name: "Быстро",
 				colors: Pattle.low,
+				tag: "short",
 			},
 			{
 	    		name: "Нормально",
 				colors: Pattle.normal,
+				tag: "normal",
 			},
 			{
 	    		name: "Долго",
 				colors: Pattle.high,
+				tag: "long",
 			},
 		],
 

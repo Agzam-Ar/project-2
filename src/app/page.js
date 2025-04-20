@@ -12,6 +12,7 @@ import ProgressBar from "@/components/ProgressBar";
 import Filters from "@/static/Filters";
 import Icons from "@/static/Icons";
 import Link from "next/link";
+import Timer from "@/components/text/Timer";
 
 export default function Home() {
 
@@ -73,7 +74,7 @@ function HomeHolder({contentTablePromise}) {
                     url: curl,
                     completed: completed,
                     priority: c.priority == undefined ? Filters.priorities.values[0].tag : c.priority,
-                    duration: c.duration,
+                    duration: c.duration == undefined ? Filters.durations.values[0].tag : c.duration,
                     difficulty: c.difficulty == undefined ? Filters.difficulties.values[0].tag : c.difficulty,
                 });
                 continue;
@@ -125,7 +126,7 @@ function HomeHolder({contentTablePromise}) {
         <ProgressBar value={completedAmount} maxValue={urls.length}/>
         <ProgressBar value={completedAmount} maxValue={urls.length}/>
         </div>*/}
-
+        {Translates.stats.availableTime}:<Timer targetDate={Prefs.get('deadline', new Date().getTime() + 12000*10_000)} timeout={1000}/>
 
         <h1>{Translates.stats.suggest}</h1>
         <div className={`${styles['grid-2x']} ${styles['articles-grid']}`}>
@@ -134,7 +135,7 @@ function HomeHolder({contentTablePromise}) {
             <Link href={`/materials${e.url}`} key={i} className={styles["article-box"]} style={{animationDelay: `${i/urls.length}s`}}>
                 <h2>{e.title}</h2>
                 <div className={styles["filter-tag-prop-box"]}>
-                    {/*<div className={styles["filter-tag-prop"]} style={{color: Filters.difficulties[e.difficulty].colors[0]}}>{Icons.difficulty}<label>{Filters.difficulties[e.difficulty].desc}</label></div>*/}
+                    <div className={styles["tag-prop"]} style={{color: Filters.difficulties[e.difficulty].colors[0]}}>{Icons.difficulty}<label>{Filters.difficulties[e.difficulty].desc}</label></div>
                     <div className={styles["tag-prop"]} style={{color: Filters.durations[e.duration].colors[0]}}>{Icons.time}<label>{Filters.durations[e.duration].desc}</label></div>
                     <div className={styles["tag-prop"]} style={{color: Filters.priorities[e.priority].colors[0]}}>{Icons.priority}<label>{Filters.priorities[e.priority].desc}</label></div>
                 </div>

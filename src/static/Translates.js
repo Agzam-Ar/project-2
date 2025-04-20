@@ -28,7 +28,12 @@ const Translates = {
 
 	stats: {
 		progress: "Прогресс",
-		suggest: "Рекомендовано дальше"
+		suggest: "Рекомендовано дальше",
+		availableTime: "Осталось времени"
+	},
+
+	date: {
+		days: "дней",
 	}
 }
 
