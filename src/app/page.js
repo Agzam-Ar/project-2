@@ -118,16 +118,10 @@ function HomeHolder({contentTablePromise}) {
     return <>
         <h1>{Translates.stats.progress}</h1>
         <ProgressBar value={completedAmount} maxValue={urls.length}/>
-        <div className={styles['completed-box']}>
-            {/*{urls.map((e,i) => <div key={i} style={{color: e.completed ? "#0f0" : "#f00"}}>{e.title + "\n"}</div>)}*/}
+        <h2>{Translates.stats.availableTime}</h2>
+        <div className={styles['timer-box']}>
+            <Timer targetDate={Prefs.get('deadline', new Date().getTime() + 12000*10_000)} timeout={1000}/>
         </div>
-       {/* <div className={styles['grid-3x']}>
-        <ProgressBar value={completedAmount} maxValue={urls.length}/>
-        <ProgressBar value={completedAmount} maxValue={urls.length}/>
-        <ProgressBar value={completedAmount} maxValue={urls.length}/>
-        </div>*/}
-        {Translates.stats.availableTime}:<Timer targetDate={Prefs.get('deadline', new Date().getTime() + 12000*10_000)} timeout={1000}/>
-
         <h1>{Translates.stats.suggest}</h1>
         <div className={`${styles['grid-2x']} ${styles['articles-grid']}`}>
         {

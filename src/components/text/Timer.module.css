@@ -5,13 +5,18 @@
 /*	font-size: 250%;*/
 	font-weight: bold;
 
+	display: flex;
+    flex-wrap: wrap;
+	max-width: 100%;
+}
+
+.group {
 	display: inline-flex;
-    --scale: 2;
+	margin-bottom: .25em;
 }
 
 
 .digit-box {
-    --factor: var(--scale);
 /*    box-shadow: 0 0 0 1px red, 0 0 0 1px pink inset; */
     width: 1em;
     line-height: 1.25em;
@@ -91,4 +96,9 @@
 /*		filter: brightness(1.0);*/
 	}
 
+}
+
+.days {
+	margin-right: .5em;
+	margin-left: .1em;
 }

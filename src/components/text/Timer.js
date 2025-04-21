@@ -37,13 +37,17 @@ export default function Timer({targetDate, timeout}) {
 	const format = n => n < 10 ? `0${n}` : n;
 
 	return <div className={styles.box}>
-		<TimerDigit digit={Math.floor(timer.days/100)}/> <TimerDigit digit={Math.floor(timer.days/10)}/><TimerDigit digit={timer.days%10}/> 
-		{Translates.date.days} 
-		<TimerDigit digit={Math.floor(timer.hours/10)}/><TimerDigit digit={timer.hours%10}/> 
-		:
-		<TimerDigit digit={Math.floor(timer.minutes/10)}/><TimerDigit digit={timer.minutes%10}/> 
-		:
-		<TimerDigit digit={Math.floor(timer.seconds/10)}/><TimerDigit digit={timer.seconds%10}/>
+		<div className={styles.group}>
+			<TimerDigit digit={Math.floor(timer.days/100)}/> <TimerDigit digit={Math.floor(timer.days/10)}/><TimerDigit digit={timer.days%10}/> 
+			<div className={styles.days}>{Translates.date.days}</div>
+		</div>
+		<div className={styles.group}>
+			<TimerDigit digit={Math.floor(timer.hours/10)}/><TimerDigit digit={timer.hours%10}/> 
+			:
+			<TimerDigit digit={Math.floor(timer.minutes/10)}/><TimerDigit digit={timer.minutes%10}/> 
+			:
+			<TimerDigit digit={Math.floor(timer.seconds/10)}/><TimerDigit digit={timer.seconds%10}/>
+		</div>
 	</div>;
 }
 
