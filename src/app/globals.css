@@ -26,6 +26,9 @@
     --navbar-background: #1a1a1a;
     --navbar-item-color: #888888;
 
+    /* Popup */
+    --popup-background: #1a1a1a;
+
     /* Filter */
     --filter-background-hover: #1a1a1a;
     --filter-low: #48A859;

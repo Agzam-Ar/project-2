@@ -175,6 +175,41 @@
 
 
 .timer-box {
+	pointer-events: none;
 	user-select: none;
 	font-size: 200%;
+}
+
+
+.available-time-header {
+	display: flex;
+}
+
+.edit-icon {
+	user-select: none;
+	color: var(--unaccent-color);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	height: 100%;
+	aspect-ratio: 1 / 1;
+	margin-left: .25em;
+	cursor: pointer;
+	transition: .15s ease-in;
+}
+
+.edit-icon:hover {
+	color: var(--foreground);
+}
+
+.edit-icon:active {
+	transform: scale(.9);
+}
+
+.date-input {
+	font-size: 150%;
+	font-family: var(--font-title);
+	border-radius: var(--border-radius);
+	padding: .25em .5em;
 }

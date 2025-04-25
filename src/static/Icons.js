@@ -5,6 +5,7 @@ import { WiTime2 } from "react-icons/wi";
 import { MdExpandMore } from "react-icons/md";
 import { PiArrowElbowDownLeftDuotone } from "react-icons/pi";
 import { MdLowPriority } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 const Icons = {
 	time: <WiTime2/>,
@@ -14,6 +15,7 @@ const Icons = {
 	checkmark: <IoMdCheckmark/>,
 	expand: <MdExpandMore/>,
 	enter: <PiArrowElbowDownLeftDuotone/>,
+	edit: <FaEdit/>
 };
 
 export default Icons;

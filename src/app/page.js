@@ -13,6 +13,7 @@ import Filters from "@/static/Filters";
 import Icons from "@/static/Icons";
 import Link from "next/link";
 import Timer from "@/components/text/Timer";
+import Popup from "@/components/Popup";
 
 export default function Home() {
 
@@ -92,9 +93,6 @@ function HomeHolder({contentTablePromise}) {
     //     }
     // }, []);
 
-    console.log(contentTable);
-
-
     const sortedUrls = [...urls].filter((e) => !e.completed);
 
     sortedUrls.sort((a,b) => {
@@ -114,13 +112,29 @@ function HomeHolder({contentTablePromise}) {
         return aDuration > bDuration ? 1 : -1;
     });
 
+    const clampTime = time => {
+        const dt = 1000*60*60*24*500;
+        console.log('clampTime', 999);
+        const now = new Date().getTime();
+        time = Math.min(time, now + dt);
+        time = Math.max(time, now);
+        console.log(time);
+        return time;
+    };
+
+    const [datePopup, setDatePopup] = useState(false);
+    const [targetDate, setTargetDate] = useState(Prefs.get('deadline', new Date().getTime()));
+    console.log('clampTime', targetDate);
+    const value = new Date(clampTime(targetDate)).toISOString().split('T')[0];
 
     return <>
         <h1>{Translates.stats.progress}</h1>
         <ProgressBar value={completedAmount} maxValue={urls.length}/>
-        <h2>{Translates.stats.availableTime}</h2>
+        <h2 className={styles['available-time-header']}>{Translates.stats.availableTime}<div className={styles['edit-icon']} onClick={() => {
+            setDatePopup(v => !v);
+        }}>{Icons.edit}</div></h2>
         <div className={styles['timer-box']}>
-            <Timer targetDate={Prefs.get('deadline', new Date().getTime() + 12000*10_000)} timeout={1000}/>
+            <Timer targetDate={targetDate} timeout={1000}/>
         </div>
         <h1>{Translates.stats.suggest}</h1>
         <div className={`${styles['grid-2x']} ${styles['articles-grid']}`}>
@@ -135,6 +149,15 @@ function HomeHolder({contentTablePromise}) {
                 </div>
             </Link>)
         }
+        <Popup visible={datePopup} onHide={() => setDatePopup(false)}>
+            <h1>{Translates.prefs.selectDeadline}</h1>
+            <input type="date" className={styles["date-input"]} value={value} onChange={e => {
+                let time = clampTime(e.target.valueAsNumber);
+                Prefs.set('deadline', time);
+                setTargetDate(Prefs.get('deadline', new Date().getTime()));
+            }}/>
+        </Popup>
+
         </div>
     </>
 }

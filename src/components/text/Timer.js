@@ -38,7 +38,7 @@ export default function Timer({targetDate, timeout}) {
 
 	return <div className={styles.box}>
 		<div className={styles.group}>
-			<TimerDigit digit={Math.floor(timer.days/100)}/> <TimerDigit digit={Math.floor(timer.days/10)}/><TimerDigit digit={timer.days%10}/> 
+			<TimerDigit digit={Math.floor(timer.days/100%10)}/> <TimerDigit digit={Math.floor(timer.days/10%10)}/><TimerDigit digit={timer.days%10}/> 
 			<div className={styles.days}>{Translates.date.days}</div>
 		</div>
 		<div className={styles.group}>

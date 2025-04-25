@@ -34,6 +34,10 @@ const Translates = {
 
 	date: {
 		days: "дней",
+	},
+
+	prefs: {
+		selectDeadline: "Целевая дата"
 	}
 }
 
