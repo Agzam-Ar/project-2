@@ -9,6 +9,7 @@
 	height: 100vh;
 	backdrop-filter: blur(2px);
 	transition: background .2s linear;
+	z-index: var(--locker-z);
 }
 
 .locker.hide {
@@ -17,23 +18,32 @@
 	backdrop-filter: blur(0px);
 }
 
-.box {
+.center {
 	min-height: 10em;
 	background: red;
-	
 	position: fixed;
-/*	margin: auto auto;
-	*/
 	width: var(--read-width);
 	top: 30%;
+	transition: .2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+	height: fit-content;
+}
+
+.box {
+	user-select: none;
+	position: fixed;
+	top: 30%;
+
+	min-height: 10em;
+	
+	width: var(--read-width);
 
 	padding: 1em 2em;
 	background: var(--popup-background);
-/*	border: 2px var(--border-color) solid;*/
 	border-radius: var(--border-radius);
 
 	box-shadow: 0 0 0 2px var(--border-color);
-	transition: .2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+	transition: transform .2s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity .2s;
+	z-index: var(--popup-z);
 }
 
 

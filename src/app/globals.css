@@ -77,6 +77,10 @@
     --warn-background: #333315;
     --error-color: #A34747;
     --error-background: #331515;
+
+    --navbar-z: 10;
+    --locker-z: 11;
+    --popup-z: 12;
 }
 
 
@@ -86,12 +90,19 @@
     }
 }
 
+
 html, body {
     overflow: hidden;
     max-width: 100vw;
     max-height: 100vh;
     overflow-x: hidden;
     font-family: var(--font-read);
+}
+
+body {
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+    height: fit-content;
 }
 
 body {
@@ -104,12 +115,12 @@ body {
     flex-direction: column;
     max-height: 100vh;
     min-height: 100vh;
-    overflow-y: scroll;
     margin: 0;
     padding: 0;
 }
 
 .body {
+    display: block;
     width: 100%;
     height: fit-content;
     min-height: 10vh;
