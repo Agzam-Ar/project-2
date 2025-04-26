@@ -86,32 +86,6 @@ function HomeHolder({contentTablePromise}) {
     };
     loadUrls();
 
-    // useEffect(() => {
-    //     // setCompleted(c => Prefs.get(`test-${curl}`, c));
-    //     for (let i = 0; i < urls.length; i++) {
-    //         urls[i];
-    //     }
-    // }, []);
-
-    const sortedUrls = [...urls].filter((e) => !e.completed);
-
-    sortedUrls.sort((a,b) => {
-        let aPriority = Filters.priorities[a.priority];
-        let bPriority = Filters.priorities[b.priority];
-        aPriority = aPriority == undefined ? 0 : aPriority.id;
-        bPriority = bPriority == undefined ? 0 : bPriority.id;
-        if(aPriority != bPriority) return aPriority - bPriority;
-
-        // if time more than we has sort by "difficulty" but else sort by "duractions" and then by "difficulty"
-
-        let aDuration = Filters.durations[a.duration];
-        let bDuration = Filters.durations[b.duration];
-        aDuration = aDuration == undefined ? 0 : aDuration.id;
-        bDuration = bDuration == undefined ? 0 : bDuration.id;
-
-        return aDuration > bDuration ? 1 : -1;
-    });
-
     const clampTime = time => {
         const dt = 1000*60*60*24*500;
         console.log('clampTime', 999);
@@ -124,8 +98,38 @@ function HomeHolder({contentTablePromise}) {
 
     const [datePopup, setDatePopup] = useState(false);
     const [targetDate, setTargetDate] = useState(Prefs.get('deadline', new Date().getTime()));
-    console.log('clampTime', targetDate);
     const value = new Date(clampTime(targetDate)).toISOString().split('T')[0];
+
+    const sortedUrls = [...urls].filter((e) => !e.completed);
+
+    const isEnoughTime = new Date().getTime() + 12*60_000*sortedUrls.reduce((a, value) => a + Filters.durations[value.duration].max, 0) <= targetDate;
+
+    sortedUrls.sort((a,b) => {
+        let aPriority = Filters.priorities[a.priority];
+        let bPriority = Filters.priorities[b.priority];
+        aPriority = aPriority == undefined ? 0 : aPriority.id;
+        bPriority = bPriority == undefined ? 0 : bPriority.id;
+        if(aPriority != bPriority) return aPriority - bPriority;
+
+        if(isEnoughTime) {
+            let aDuration = Filters.durations[a.duration];
+            let bDuration = Filters.durations[b.duration];
+            aDuration = aDuration == undefined ? 0 : aDuration.id;
+            bDuration = bDuration == undefined ? 0 : bDuration.id;
+            if(aDuration != bDuration) return aDuration - bDuration;
+
+            let aPriority = Filters.priorities[a.priority];
+            let bPriority = Filters.priorities[b.priority];
+            aPriority = aPriority == undefined ? 0 : aPriority.id;
+            bPriority = bPriority == undefined ? 0 : bPriority.id;
+            return aPriority - bPriority;
+        }
+        let aDuration = Filters.durations[a.duration];
+        let bDuration = Filters.durations[b.duration];
+        aDuration = aDuration == undefined ? 0 : aDuration.id;
+        bDuration = bDuration == undefined ? 0 : bDuration.id;
+        return aDuration - bDuration;
+    });
 
     return <>
         <h1>{Translates.stats.progress}</h1>
