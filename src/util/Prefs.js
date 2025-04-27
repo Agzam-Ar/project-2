@@ -5,7 +5,7 @@ const Prefs = {
 	get: (name, def) => {
 		if(localStorage == undefined) return def;
 		let item = localStorage.getItem(`prefs-${name}`);
-		if(item == null || isNaN(item)) return def;
+		if(item == null || (typeof item == 'number' && isNaN(item))) return def;
 		return item;
 	},
 

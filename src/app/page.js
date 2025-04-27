@@ -74,9 +74,8 @@ function HomeHolder({contentTablePromise}) {
             const curl = url + c.url;
             if(c.child == undefined) {
                 // Element
-                let completed = !!Prefs.get(`test-${curl}`, false);
+                let completed = !!Prefs.get(`test-${curl.substring(1)}`, false);
                 completedAmount += completed;
-                // if(completed) console.log('completed', curl, completed);//Prefs.get(`test-${curl}`, false));
                 urls.push({
                     title: c.title,
                     url: curl,

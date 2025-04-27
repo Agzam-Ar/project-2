@@ -53,9 +53,7 @@ const ArticleParser = {
 		let completedTests = [];
 		const onComplete = (tid) => {
 			completedTests[tid] = true;
-			console.log(completedTests);
 			for (let state of completedTests) if(!state) return;
-			console.log("All correct!", url);
 			Prefs.set(`test-${url}`, true);
 		};
 
