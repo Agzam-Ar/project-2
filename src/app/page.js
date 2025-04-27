@@ -98,7 +98,7 @@ function HomeHolder({contentTablePromise}) {
     const value = new Date(clampTime(targetDate)).toISOString().split('T')[0];
 
     return <>
-        <h1>{Translates.stats.progress}{value}</h1>
+        <h1>{Translates.stats.progress}</h1>
         <ProgressBar value={completedAmount} maxValue={urls.length}/>
         <h2 className={styles['available-time-header']}>{Translates.stats.availableTime}<div className={styles['edit-icon']} onClick={() => {
             setDatePopup(v => !v);
