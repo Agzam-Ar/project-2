@@ -183,7 +183,8 @@
 
 .available-time-header {
 	display: flex;
-	height: fit-content;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 .edit-icon {
