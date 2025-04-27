@@ -119,3 +119,11 @@ System.out.println("Example of code");
 "validator": "/^[0123456789]+$/"
 ```
 ***
+
+### Картинки:
+
+```markdown
+![alt](img.png)
+```
+
+![img](img.png)
