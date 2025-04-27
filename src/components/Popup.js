@@ -48,6 +48,7 @@ export default function Popup({children, visible, onHide}) {
 		translateY(dy);
 		mouse.current.x = e.touches[0].screenX;
 		mouse.current.y = e.touches[0].screenY;
+        e.preventDefault();
 	};
 
 	// useEffect(() => {
@@ -65,7 +66,7 @@ export default function Popup({children, visible, onHide}) {
 		addEventListener('mouseup', onMouseUp);
 		addEventListener('touchend', onMouseUp);
 		addEventListener('mousemove', onMouseMove);
-		addEventListener('touchmove', onTouchMove);
+		addEventListener('touchmove', onTouchMove, { passive: false });
 
     	const updater = setInterval(returnBack, 1000/60);
 
