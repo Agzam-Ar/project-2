@@ -1,19 +1,15 @@
 'use client'
 
 import Translates from "@/static/Translates";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import styles from './Timer.module.css';
 
 const dayToMs = 1000 * 60 * 60 * 24;
 
 export default function Timer({targetDate, timeout}) {
-	const [timer, setTimer] = useState({
-		days: 0,
-		hours: 0,
-		minutes: 0,
-		seconds: 0
-	});
+
+	const [timer, setTimer] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
 	useEffect(() => {
     	const updater = setInterval(() => {
@@ -21,6 +17,12 @@ export default function Timer({targetDate, timeout}) {
     		const target = targetDate;
     		const deltaTime = target - now;
 			if (deltaTime <= 0) {
+				setTimer({
+					days: 0,
+					hours: 0,
+					minutes: 0,
+					seconds: 0
+				});
 			  clearInterval(updater);
 			  return;
 			}
@@ -32,7 +34,7 @@ export default function Timer({targetDate, timeout}) {
 			});
    		}, 1000);
     	return () => clearInterval(updater);
-  	}, [targetDate]);
+  	}, [targetDate, timeout]);
 
 	const format = n => n < 10 ? `0${n}` : n;
 

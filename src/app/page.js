@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
-import { Suspense, use, useEffect, useState } from "react";
+import React, { Suspense, use, useEffect, useMemo, useState } from "react";
 
 import Translates from "@/static/Translates";
 import Vars from "@/util/Vars";
@@ -51,6 +51,13 @@ export default function Home() {
   );
 }
 
+const clampTime = time => {
+    const dt = 1000*60*60*24*500;
+    const now = new Date().getTime();
+    time = Math.min(time, now + dt);
+    time = Math.max(time, now);
+    return time;
+};
 
 function HomeHolder({contentTablePromise}) {
     if(!contentTablePromise) return null;
@@ -86,22 +93,35 @@ function HomeHolder({contentTablePromise}) {
     };
     loadUrls();
 
-    const clampTime = time => {
-        const dt = 1000*60*60*24*500;
-        console.log('clampTime', 999);
-        const now = new Date().getTime();
-        time = Math.min(time, now + dt);
-        time = Math.max(time, now);
-        console.log(time);
-        return time;
-    };
-
     const [datePopup, setDatePopup] = useState(false);
     const [targetDate, setTargetDate] = useState(Prefs.get('deadline', new Date().getTime()));
     const value = new Date(clampTime(targetDate)).toISOString().split('T')[0];
 
-    const sortedUrls = [...urls].filter((e) => !e.completed);
+    return <>
+        <h1>{Translates.stats.progress}{value}</h1>
+        <ProgressBar value={completedAmount} maxValue={urls.length}/>
+        <h2 className={styles['available-time-header']}>{Translates.stats.availableTime}<div className={styles['edit-icon']} onClick={() => {
+            setDatePopup(v => !v);
+        }}>{Icons.edit}</div></h2>
+        <div className={styles['timer-box']}>
+            <Timer targetDate={targetDate} timeout={1000}/>
+        </div>
+        <Popup visible={datePopup} onHide={() => setDatePopup(false)}>
+            <h1>{Translates.prefs.selectDeadline}</h1>
+            <input type="date" className={styles["date-input"]} value={value} onChange={e => {
+                let time = clampTime(e.target.valueAsNumber);
+                Prefs.set('deadline', time);
+                setTargetDate(Prefs.get('deadline', new Date().getTime()));
+            }}/>
+        </Popup>
+        <h1>{Translates.stats.suggest}</h1>
+        <Cards targetDate={targetDate} urls={urls}/>
+    </>
+}
 
+
+const Cards = React.memo(({targetDate, urls}) => {
+    const sortedUrls = [...urls].filter((e) => !e.completed);
     const isEnoughTime = new Date().getTime() + 12*60_000*sortedUrls.reduce((a, value) => a + Filters.durations[value.duration].max, 0) <= targetDate;
 
     sortedUrls.sort((a,b) => {
@@ -130,38 +150,17 @@ function HomeHolder({contentTablePromise}) {
         bDuration = bDuration == undefined ? 0 : bDuration.id;
         return aDuration - bDuration;
     });
-
-    return <>
-        <h1>{Translates.stats.progress}</h1>
-        <ProgressBar value={completedAmount} maxValue={urls.length}/>
-        <h2 className={styles['available-time-header']}>{Translates.stats.availableTime}<div className={styles['edit-icon']} onClick={() => {
-            setDatePopup(v => !v);
-        }}>{Icons.edit}</div></h2>
-        <div className={styles['timer-box']}>
-            <Timer targetDate={targetDate} timeout={1000}/>
-        </div>
-        <h1>{Translates.stats.suggest}</h1>
-        <div className={`${styles['grid-2x']} ${styles['articles-grid']}`}>
+    return <div className={`${styles['grid-2x']} ${styles['articles-grid']}`}>
         {
             sortedUrls.map((e,i) => 
-            <Link href={`/materials${e.url}`} key={i} className={styles["article-box"]} style={{animationDelay: `${i/urls.length}s`}}>
-                <h2>{e.title}</h2>
-                <div className={styles["filter-tag-prop-box"]}>
-                    <div className={styles["tag-prop"]} style={{color: Filters.difficulties[e.difficulty].colors[0]}}>{Icons.difficulty}<label>{Filters.difficulties[e.difficulty].desc}</label></div>
-                    <div className={styles["tag-prop"]} style={{color: Filters.durations[e.duration].colors[0]}}>{Icons.time}<label>{Filters.durations[e.duration].desc}</label></div>
-                    <div className={styles["tag-prop"]} style={{color: Filters.priorities[e.priority].colors[0]}}>{Icons.priority}<label>{Filters.priorities[e.priority].desc}</label></div>
-                </div>
-            </Link>)
+                <Link href={`/materials${e.url}`} key={i} className={styles["article-box"]} style={{animationDelay: `${i/urls.length}s`}}>
+                    <h2>{e.title}</h2>
+                    <div className={styles["filter-tag-prop-box"]}>
+                        <div className={styles["tag-prop"]} style={{color: Filters.difficulties[e.difficulty].colors[0]}}>{Icons.difficulty}<label>{Filters.difficulties[e.difficulty].desc}</label></div>
+                        <div className={styles["tag-prop"]} style={{color: Filters.durations[e.duration].colors[0]}}>{Icons.time}<label>{Filters.durations[e.duration].desc}</label></div>
+                        <div className={styles["tag-prop"]} style={{color: Filters.priorities[e.priority].colors[0]}}>{Icons.priority}<label>{Filters.priorities[e.priority].desc}</label></div>
+                    </div>
+                </Link>)
         }
-        <Popup visible={datePopup} onHide={() => setDatePopup(false)}>
-            <h1>{Translates.prefs.selectDeadline}</h1>
-            <input type="date" className={styles["date-input"]} value={value} onChange={e => {
-                let time = clampTime(e.target.valueAsNumber);
-                Prefs.set('deadline', time);
-                setTargetDate(Prefs.get('deadline', new Date().getTime()));
-            }}/>
-        </Popup>
-
-        </div>
-    </>
-}
+    </div>;
+});
