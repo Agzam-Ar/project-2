@@ -1,3 +1,5 @@
+<!-- [difficulty=easy] [priority=base] [duration=long] -->
+
 # Типы
 
 ## Позиционные и непозиционные системы счисления 

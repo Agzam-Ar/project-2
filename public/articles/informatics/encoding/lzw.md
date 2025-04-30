@@ -1,3 +1,5 @@
+<!-- [difficulty=normal] [priority=advanced] [duration=normal] -->
+
 # Лэмпела-Зива
 
 ## Кодирование с целью сжатия 

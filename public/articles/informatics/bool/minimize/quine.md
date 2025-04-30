@@ -1,3 +1,4 @@
+<!-- [difficulty=hard] [priority=extra] [duration=long] -->
 # Метод Квайна
 
 ## Основные понятия

@@ -1,3 +1,5 @@
+<!-- [difficulty=easy] [priority=base] [duration=normal] -->
+
 # Троичная симметричная
 
 ## Основные понятия

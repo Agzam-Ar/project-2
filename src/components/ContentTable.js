@@ -165,8 +165,11 @@ function ContentTableHolder({contentTablePromise, onSelect, rootUrl, filters}) {
 function ContentTableElement({c, tags, pathname, rootUrl, curl, visible}) {
     const [completed, setCompleted] = useState(false);
     useEffect(() => {
-        setCompleted(c => Prefs.get(`test-${curl}`, c));
+        setCompleted(c => Prefs.get(`test-${curl.substring(1)}`, c));
     }, []);
+    if(Filters.difficulties[tags.difficulty] == undefined) console.error(`difficulty "${tags.difficulty}" not found at ${curl}`);
+    if(Filters.durations[tags.duration] == undefined) console.error(`duration "${tags.duration}" not found at ${curl}`);
+    if(Filters.priorities[tags.priority] == undefined) console.error(`priority "${tags.priority}" not found at ${curl}`);
     return (
     <Link className={`${styles["content-table-element"]} ${styles[`cte-difficulty-${tags.difficulty}`]} ${styles[pathname == `${rootUrl + curl}` ? "cte-active" : (visible ? `cte-visible` : `cte-hidden`)]}${completed ? " "+styles["completed"] : ""}`} href={rootUrl + curl}>
         {completed ? Icons.checkmark : null} <div className={styles["content-table-element-text"]}>{c.title}</div>

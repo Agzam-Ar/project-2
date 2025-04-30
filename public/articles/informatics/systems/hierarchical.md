@@ -1,3 +1,5 @@
+<!-- [difficulty=easy] [priority=base] [duration=normal] -->
+
 # Иерархические системы
 
 ## Двоично-десятичная система счисления (BCD)

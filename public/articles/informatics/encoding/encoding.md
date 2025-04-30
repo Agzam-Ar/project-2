@@ -1,3 +1,5 @@
+<!-- [difficulty=normal] [priority=advanced] [duration=normal] -->
+
 # Кодирование информации
 
 ## Количество информации
