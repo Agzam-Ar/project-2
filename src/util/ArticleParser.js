@@ -57,6 +57,7 @@ const ArticleParser = {
 			Prefs.set(`test-${url}`, true);
 		};
 
+
 		const build = (tree) => {
 			let elements = [];
 			for (let node of tree) {
@@ -82,9 +83,6 @@ const ArticleParser = {
 				if(node.type == 'image') {
 					Tag = Image;
 					attr.src = `${node.url}`;
-					console.log(node);
-					// elements.push(<Image key={elements.length} className={styles[`md-${className}`]} alt={node.alt} src={`/images/${node.url}`} width={0} 
-  // sizes="100vw" height={0}/>);
 					elements.push(<img key={elements.length} className={styles[`md-${className}`]} src={`${Vars_.env.url}/images/${node.url}`}/>);
 					continue;
 				}
@@ -119,6 +117,8 @@ const ArticleParser = {
 								value: val.charAt(0) == '$' ? Vars[val] : val,
 							});
 						}
+						const tid = completedTests.length;
+						completedTests.push(false);
                         elements.push(
                             <Quiz
                                 key={elements.length}
@@ -127,6 +127,7 @@ const ArticleParser = {
                                 config={{
                                 	items: items,
                                 }}
+                                onComplete={() => onComplete(tid)}
                             />
                         );
                         continue;
@@ -158,10 +159,10 @@ const ArticleParser = {
                             console.error(e, `\n{${node.value}}`);
                         }
 						const tid = completedTests.length;
+                        completedTests.push(false);
 						let tf = <TestField key={elements.length} onComplete={() => onComplete(tid)} config={config}/>;
                         elements.push(tf);
                         eTests.push(tf);
-                        completedTests.push(false);
                         continue;
                     }
 					elements.push(

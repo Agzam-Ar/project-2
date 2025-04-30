@@ -8,7 +8,7 @@ import Icons from '@/static/Icons';
 
 // TODO: shuffle
 
-export default function Quiz({config}) {
+export default function Quiz({config, onComplete}) {
 	const [completed, setCompleted] = useState(false);
 	return <div className={`${styles["box"]}`}>
 		{
@@ -18,7 +18,10 @@ export default function Quiz({config}) {
 					completed={completed} 
 					config={e} 
 					letter={String.fromCharCode('A'.charCodeAt(0) + key)} 
-					onCorrect={() => setCompleted(true)}
+					onCorrect={() => {
+						setCompleted(true);
+						onComplete();
+					}}
 				/>)
 		}
 	</div>
