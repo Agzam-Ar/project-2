@@ -25,6 +25,25 @@
     transition: background .15s ease;
 
     border-radius: var(--border-radius);
+    z-index: 999;
+}
+
+.box-fake {
+    padding: 1em;
+    height: 1em;
+    line-height: 1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    vertical-align: middle;
+    text-align: center;
+
+    background: var(--background);
+    transition: background .15s ease;
+
+    border-radius: var(--border-radius);
+    z-index: 999;
 }
 
 .box:hover {
@@ -76,13 +95,15 @@
     position: absolute;
     left: 0;
     right: 0;
+    top: 0;
     margin-top: .25em;
     background: #ffff0033;
     z-index: 99;
     pointer-events: none;
     opacity: 0;
     border-radius: var(--border-radius);
-    transform: translate(0, -10px);
+    transform: translate(0, -4px);
+/*    transform: translate(0, -10px);*/
     transition: .15s ease;
     background: var(--dropdown-background);
     box-shadow: 0 0 0 1px var(--dropdown-border-color), .25em .25em 1em #00000033;
@@ -92,7 +113,6 @@
 .dropdown-body.visible {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(0, 0);
 }
 
 .item-box {
@@ -123,3 +143,20 @@
 }
 
 
+.locker {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #000000aa;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+    transition: background .2s linear;
+    z-index: var(--locker-z);
+}
+
+.locker.hide {
+    pointer-events: none;
+    background: transparent;
+    backdrop-filter: blur(0px);
+}

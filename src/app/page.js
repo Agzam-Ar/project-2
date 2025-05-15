@@ -111,6 +111,7 @@ function HomeHolder({contentTablePromise}) {
                 let time = clampTime(e.target.valueAsNumber);
                 Prefs.set('deadline', time);
                 setTargetDate(Prefs.get('deadline', new Date().getTime()));
+                setDatePopup(() => false);
             }}/>
         </Popup>
         <h1>{Translates.stats.suggest}</h1>
