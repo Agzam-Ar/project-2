@@ -132,12 +132,15 @@
 .md-html {}
 
 .md-image {
-    height: 15em;
+/*    height: 15em;*/
     aspect-ratio: auto;
     border-radius: var(--border-radius);
     border: 1px var(--border-color) solid;
     pointer-events: none;
     margin: 1em auto;
+    
+    max-width: 100%;
+    height: auto;
 }
 
 .md-thematicBreak {
@@ -150,4 +153,9 @@
     margin-bottom: 1.5em;
     opacity: .1;
     background: var(--foreground);
+}
+
+.md-tableCell > .md-image {
+    max-width: 100%;
+    height: auto;
 }
